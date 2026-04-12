@@ -26,7 +26,7 @@ if [ "${ans,,}" != "n" ]; then
     echo Installed!
 fi
 
-if ! [ type pfetch >/dev/null 2>&1 ]; then
+if ! type pfetch >/dev/null 2>&1; then
     echo "pfetch is not installed."
     printf "Install it to ~/.local/bin? Requires wget. (Y/n)  > "
     read -n1 ans
