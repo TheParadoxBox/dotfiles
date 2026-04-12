@@ -1,9 +1,14 @@
 #!/bin/bash
 
 config_dir=~/.config
+state_dir=~/.local/state
 
 if [ -v XDG_CONFIG_HOME ]; then
     config_dir=$XDG_CONFIG_HOME
+fi
+
+if [ -v XDG_STATE_HOME ]; then
+    config_dir=$XDG_STATE_HOME
 fi
 
 printf "Install Vim dotfiles? (Y/n)  > "
@@ -13,6 +18,7 @@ echo
 if [ "${ans,,}" != "n" ]; then
     mkdir -p $config_dir/vim
     cp -r ./vim $config_dir/
+    mkdir -p $state_dir/vim/undo
     echo Installed!
 fi
 

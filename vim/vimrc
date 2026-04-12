@@ -25,9 +25,9 @@ set ruler " show current position
 
 """ stuff I did myself
 
-" set xdg location for undodir
-if empty("$XDG_STATE_HOME")
-    let $XDG_STATE_HOME="$HOME/.cache"
+" set xdg location for undodir and viminfo
+if empty($XDG_STATE_HOME)
+    let $XDG_STATE_HOME=$HOME."/.local/state"
 endif
 
 set wildmenu " enable : autocomplete with tab
@@ -48,6 +48,7 @@ set colorcolumn=81 " line at 81 columns; do not put text here
 set shell=/usr/bin/fish " The friendly interactive shell
 set undofile " make undo buffer persist
 set undodir=$XDG_STATE_HOME/vim/undo " undo storage location
+set viminfofile=$XDG_STATE_HOME/vim/viminfo " viminfo location
 set lazyredraw " redraw... less
 set clipboard=unnamedplus " sync yank/delete/put with system clipboard
 set splitbelow " more natural splitting
