@@ -7,8 +7,7 @@ Config files for deployment in Nick's Unix homedirs.
 Installation
 ------------
 
-Run ./install.sh. Requires bash. This will also let you install pfetch to
-`~/.local/bin` if it isn't in your PATH. All components are optional.
+Run `./install.sh`. Requires bash. All components are optional.
 
 
 Contents
