@@ -1,0 +1,78 @@
+"""""
+" nick's configs :)
+"""""
+
+""" adapted from RIT CS config
+" line numbers + syntax
+set number " line numbers
+syntax on " syntax highighting
+" tabs
+set autoindent " keep indentation on newline
+set smartindent " add indentation after braces
+set smarttab " tab key uses shiftwidth instead of a tab character
+set expandtab " expand tabs into spaces
+set tabstop=4 " tab character width
+set shiftwidth=4 " number of spaces to enter when hitting tab
+set softtabstop=4 " num of spaces to add/delete with tab/backspace
+" parentheses/braces/brackets
+set showmatch " highlight matching braces and his friends
+" backspaces
+set backspace=indent,eol,start " make backspace work properly
+" gui
+set winminwidth=0 " unrestrict min width
+set winminheight=0 " unrestrict min height
+set ruler " show current position
+
+""" stuff I did myself
+
+" set xdg location for undodir
+if empty("$XDG_STATE_HOME")
+    let $XDG_STATE_HOME="$HOME/.cache"
+endif
+
+set wildmenu " enable : autocomplete with tab
+set wildmode=longest:full,full " start with the longest entry, then cycle
+set wildignore=*.o,*.pyc,*.class,*.git " ignore compiled/build files
+" set hlsearch " highlight all search results
+set ignorecase " case-insensitive search...
+set smartcase " ...unless you type an uppercase letter
+set nocompatible " disable vi compat
+filetype on " enable filetype detection
+filetype plugin on " enable plugins for the current filetype
+set wrap " soft-wrap long lines
+set linebreak " do not break in the middle of a word
+set nolist " do not include whitespace in words
+set display+=truncate " show @@@ if a wrapped line goes off the screen
+set mouse=a " enable mouse support squeak squeak
+set colorcolumn=81 " line at 81 columns; do not put text here
+set shell=/usr/bin/fish " The friendly interactive shell
+set undofile " make undo buffer persist
+set undodir=$XDG_STATE_HOME/vim/undo " undo storage location
+set lazyredraw " redraw... less
+set clipboard=unnamedplus " sync yank/delete/put with system clipboard
+set splitbelow " more natural splitting
+set splitright " ditto
+set scrolloff=8 " keep 8 vertical lines visible when scrolling
+set sidescrolloff=8 " above but horizontal
+autocmd BufWritePre * :%s/\s\+$//e " trim trailing whitespace on save
+
+" gui configs; kind of self-explanatory
+" if this gets too large, it should be moved to ~/.config/vim/gvimrc
+if has("gui_running")
+    colorscheme slate " pretty colors since gvim is normally light mode
+    set guifont=Iosevka\ Nerd\ Font\ 14 " the best font ever
+    set columns=100 " comfortable but not overkill
+else
+    " tui configs
+    highlight ColorColumn ctermbg=0 " make colorcolumn not ugly af
+    highlight Comment ctermfg=8 " make comments easier to differentiate
+endif
+
+" this whole block assigns <C-;> as an alternative to <Esc>
+nnoremap <C-;> <esc>        " Remap in Normal mode
+inoremap <C-;> <esc>        " Remap in Insert and Replace mode
+vnoremap <C-;> <esc>        " Remap in Visual and Select mode
+xnoremap <C-;> <esc>        " Remap in Visual mode
+snoremap <C-;> <esc>        " Remap in Select mode
+cnoremap <C-;> <C-C>        " Remap in Command-line mode
+onoremap <C-;> <esc>        " Remap in Operator pending mode
