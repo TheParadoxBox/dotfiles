@@ -63,10 +63,6 @@ if has("gui_running")
     colorscheme slate " pretty colors since gvim is normally light mode
     set guifont=Iosevka\ Nerd\ Font\ 14 " the best font ever
     set columns=100 " comfortable but not overkill
-else
-    " tui configs
-    highlight ColorColumn ctermbg=0 " make colorcolumn not ugly af
-    highlight Comment ctermfg=8 " make comments easier to differentiate
 endif
 
 " this whole block assigns <C-;> as an alternative to <Esc>
