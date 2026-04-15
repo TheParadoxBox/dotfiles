@@ -56,11 +56,11 @@ set splitright " ditto
 set scrolloff=8 " keep 8 vertical lines visible when scrolling
 set sidescrolloff=8 " above but horizontal
 autocmd BufWritePre * :%s/\s\+$//e " trim trailing whitespace on save
+colorscheme retrobox " pretty colors!
 
 " gui configs; kind of self-explanatory
 " if this gets too large, it should be moved to ~/.config/vim/gvimrc
 if has("gui_running")
-    colorscheme slate " pretty colors since gvim is normally light mode
     set guifont=Iosevka\ Nerd\ Font\ 14 " the best font ever
     set columns=100 " comfortable but not overkill
 endif
