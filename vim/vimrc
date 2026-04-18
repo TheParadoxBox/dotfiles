@@ -63,6 +63,7 @@ colorscheme retrobox " pretty colors!
 if has("gui_running")
     set guifont=Iosevka\ Nerd\ Font\ 14 " the best font ever
     set columns=100 " comfortable but not overkill
+    set background=dark " for some reason, gvim needs this
 endif
 
 " this whole block assigns <C-;> as an alternative to <Esc>
