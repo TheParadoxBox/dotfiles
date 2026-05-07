@@ -3,9 +3,14 @@ if status is-interactive
     set -U fish_greeting
     set -x PAGER less
     fish_add_path ~/.local/bin
+
+    # safely get columns
+    set cols (tput cols 2>/dev/null; or echo 0)
+
     if type -q pfetch
         pfetch
-    else if type -q /usr/libexec/ublue-motd # bazzite and friends motd
+    # bazzite and friends motd, but only if we're wide enough
+    else if type -q /usr/libexec/ublue-motd; and test $cols -ge 80
         /usr/libexec/ublue-motd
     end
 end
