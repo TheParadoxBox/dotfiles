@@ -5,5 +5,7 @@ if status is-interactive
     fish_add_path ~/.local/bin
     if type -q pfetch
         pfetch
+    else if type -q /usr/libexec/ublue-motd # bazzite and friends motd
+        /usr/libexec/ublue-motd
     end
 end
