@@ -12,5 +12,5 @@ function fish_prompt --description 'Write out the prompt'
     else
         set remote_color blue
     end
-    echo -n -s (set_color $remote_color) \ue0b6 (set_color normal -b $remote_color) " " (whoami) " " (set_color $remote_color -b green) \ue0b8 (set_color normal -b green) " " $cwd (fish_vcs_prompt) " " (set_color green -b normal) \ue0b8 (set_color --reset) " "
+    echo -n -s (set_color $remote_color) \ue0b6 (set_color normal -b $remote_color) " " (whoami) " " (set_color $remote_color -b green) \ue0b8 (set_color normal -b green) " " $cwd (fish_vcs_prompt) " " (set_color green -b normal) \ue0b8 (set_color normal -b normal) " "
 end
