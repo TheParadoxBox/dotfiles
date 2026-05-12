@@ -2,6 +2,8 @@ if status is-interactive
     # Commands to run in interactive sessions can go here
     set -U fish_greeting
     set -x PAGER less
+    set -X EDITOR vim
+    set -X VISUAL vim
     fish_add_path ~/.local/bin
 
     # safely get columns
