@@ -13,8 +13,17 @@ Run `./install.sh`. Requires bash. All components are optional.
 Contents
 --------
 
-**Vim**: Sensible defaults for readability and usability, as well as some QoL
-tweaks. Works well for text mode or GVim.
+**Vim**: Customized for readability and usability, as well as pulling the
+following plugins:
+<!--TODO: Add links to the repos.-->
+- goyo
+- gruvbox-material
+- nerdtree
+- vim-airline
+- vim-bufferline
+- vim-transparent
+- vim-polyglot
+- vim-sensible
 
 **Fish**: Shows pfetch if it's installed and implements a Powerline-inspired
 prompt. Also sets `EDITOR` and `VISUAL` to `vim`, `PAGER` to `less`, adds
