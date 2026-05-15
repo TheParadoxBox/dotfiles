@@ -25,10 +25,41 @@ set ruler " show current position
 
 """ stuff I did myself
 
+" find vimrc directory
+let vimrcdir = fnamemodify($MYVIMRC, ':h')
+
 " set xdg location for undodir and viminfo
 if empty($XDG_STATE_HOME)
     let $XDG_STATE_HOME=$HOME."/.local/state"
 endif
+
+" THIS MUST COME FIRST. I do not want to be flashbanged every time I open Vim
+set background=dark " set dark background. simple as
+
+" plugins using plug
+" install
+if empty(glob(vimrcdir . '/autoload/plug.vim'))
+    silent execute '!curl -fLo '.vimrcdir.'/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+    autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+
+" specify plugins
+call plug#begin()
+    Plug 'tpope/vim-sensible' " sensible defaults for the things that I missed
+    Plug 'sainnhe/gruvbox-material' " best colorscheme
+    Plug 'preservim/nerdtree' " file tree
+    Plug 'vim-airline/vim-airline' " pretty statusbar
+    Plug 'vim-airline/vim-airline-themes' " themes for airline
+    Plug 'bling/vim-bufferline' " show open buffers
+    Plug 'tribela/vim-transparent' " remove that pesky bg color
+    Plug 'sheerun/vim-polyglot' " mondo language support
+    Plug 'junegunn/goyo.vim' " Focus.
+call plug#end()
+
+" add missing plugins
+autocmd VimEnter * if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
+  \| PlugClean | PlugInstall --sync | source $MYVIMRC
+\| endif
 
 set wildmenu " enable : autocomplete with tab
 set wildmode=longest:full,full " start with the longest entry, then cycle
@@ -56,14 +87,49 @@ set splitright " ditto
 set scrolloff=8 " keep 8 vertical lines visible when scrolling
 set sidescrolloff=8 " above but horizontal
 autocmd BufWritePre * :%s/\s\+$//e " trim trailing whitespace on save
-colorscheme retrobox " pretty colors!
+let g:gruvbox_material_foreground = 'original' " enhance contrast
+let g:clear_background=1 " vim-transparent needs this to run with colorscheme
+colorscheme gruvbox-material " pretty colors!
+let g:airline_theme='base16_gruvbox_dark_hard' " airline too!
+let g:airline_left_sep='' " le triangle
+let g:airline_right_sep='' " l'autre triangle
+if !exists('g:airline_symbols') " need to create this for the following few lines
+    let g:airline_symbols = {}
+endif
+let g:airline_symbols.colnr = '  ' " change some weird symbols
+let g:airline_symbols.linenr = '  ' " ditto
+let g:airline_symbols.maxlinenr = '' " ditto (this one is gone 💀)
+let g:airline_skip_empty_sections = 1 " bye bye ugly triangle
+let g:bufferline_echo = 0 " show bufferline in airline only, not command line
+set noshowmode " this is redundant with airline
+
+" leader key + binds
+let mapleader = ' ' " change leader key to Space
+nnoremap <leader>n :NERDTreeToggleVCS<CR>
+nnoremap <leader>g :Goyo<CR>
+nnoremap <leader>q :wq<CR>
+nnoremap <leader>h :bprev<CR>
+nnoremap <leader>l :bnext<CR>
+nnoremap <leader>b :buf
+nnoremap <leader><C-h> :tabprev<CR>
+nnoremap <leader><C-l> :tabnext<CR>
+
+" NERDTree configs (copied from readme, I'm not good at vimscript lol)
+
+" this is the Vim8 version because it "should be portable"
+" Close the tab if NERDTree is the only window remaining in it.
+autocmd BufEnter * if winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
+
+" this doesn't seem to work
+" If another buffer tries to replace NERDTree, put it in the other window, and bring back NERDTree.
+" autocmd BufEnter * if winnr() == winnr('h') && bufname('#') =~ 'NERD_tree_\d\+' && bufname('%') !~ 'NERD_tree_\d\+' && winnr('$') > 1 |
+"     \ let buf=bufnr() | buffer# | execute "normal! \<C-W>w" | execute 'buffer'.buf | endif
 
 " gui configs; kind of self-explanatory
 " if this gets too large, it should be moved to ~/.config/vim/gvimrc
 if has("gui_running")
     set guifont=Iosevka\ Nerd\ Font\ 14 " the best font ever
     set columns=100 " comfortable but not overkill
-    set background=dark " for some reason, gvim needs this
 endif
 
 " this whole block assigns <C-;> as an alternative to <Esc>
