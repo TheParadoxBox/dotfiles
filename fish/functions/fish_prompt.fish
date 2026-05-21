@@ -6,9 +6,11 @@ function fish_prompt --description 'Write out the prompt'
     else
         set cwd (basename (pwd))
     end
-    # change color if on ssh
+    # change color if on ssh or in container
     if set -q SSH_CONNECTION
         set remote_color purple
+    else if test -f /run/.containerenv
+        set remote_color yellow
     else
         set remote_color blue
     end
