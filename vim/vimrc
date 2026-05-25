@@ -86,6 +86,7 @@ set splitbelow " more natural splitting
 set splitright " ditto
 set scrolloff=8 " keep 8 vertical lines visible when scrolling
 set sidescrolloff=8 " above but horizontal
+set fillchars+=vert:│ " use better character for vertical separator
 autocmd BufWritePre * :%s/\s\+$//e " trim trailing whitespace on save
 let g:gruvbox_material_foreground = 'original' " enhance contrast
 let g:clear_background=1 " vim-transparent needs this to run with colorscheme
