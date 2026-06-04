@@ -9,6 +9,11 @@ if status is-interactive
     # safely get columns
     set cols (tput cols 2>/dev/null; or echo 0)
 
+    # muck up the hostname for container pfetch purposes
+    if test -e /run/.containerenv
+            set name (grep '^name=' /run/.containerenv | string replace -r '^name="(.*)"$' '$1')
+            set -fx HOSTNAME "$HOSTNAME [$name]"
+    end
     if type -q pfetch
         pfetch
     # bazzite and friends motd, but only if we're wide enough
