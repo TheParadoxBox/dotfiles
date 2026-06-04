@@ -8,7 +8,7 @@ if [ -v XDG_CONFIG_HOME ]; then
 fi
 
 if [ -v XDG_STATE_HOME ]; then
-    config_dir=$XDG_STATE_HOME
+    state_dir=$XDG_STATE_HOME
 fi
 
 printf "Install Vim dotfiles? (Y/n)  > "
