@@ -103,6 +103,7 @@ let g:airline_symbols.maxlinenr = '' " ditto (this one is gone 💀)
 let g:airline_skip_empty_sections = 1 " bye bye ugly triangle
 let g:bufferline_echo = 0 " show bufferline in airline only, not command line
 set noshowmode " this is redundant with airline
+autocmd BufRead,BufNewFile *.typ set filetype=typst " polyglot gets this wrong
 
 " leader key + binds
 let mapleader = ' ' " change leader key to Space
